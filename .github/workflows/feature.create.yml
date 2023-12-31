@@ -55,14 +55,6 @@ jobs:
           owner=${{ github.repository_owner }}
           repo=${{ github.event.repository.name }}
 
-          echo "{
-                  "token": "$token"
-                  "title": "Auto-generated PR for $dev_branch",
-                  "body": "Auto-generated main pull request from workflow",
-                  "head": "$dev_branch",
-                  "base": "dev"
-                }"
-
           # Create a pull request using GitHub API
           response=$(curl --location --request POST 'https://api.github.com/repos/$owner/$repo/pulls' \
             -H 'Accept: application/vnd.github+json' \
@@ -70,7 +62,7 @@ jobs:
             -H 'Content-Type: application/json' \
             -d '{
                   "title": "Auto-generated PR for $dev_branch",
-                  "head": "$dev_branch",
+                  "head": "$owner:$dev_branch",
                   "base": "dev"
                 }' 
           )
