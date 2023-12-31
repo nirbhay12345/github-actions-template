@@ -25,6 +25,6 @@ jobs:
           dev_branch="${branch_name}-dev"
           main_branch="${branch_name}-main"
           current_branch=$(git branch --show-current)  # Get the current branch name
-
+          git pull
           git push origin $current_branch:$dev_branch
           git push origin $current_branch:$main_branch
