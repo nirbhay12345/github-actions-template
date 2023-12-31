@@ -28,7 +28,7 @@ jobs:
 
           # creating remote branches
           git push origin $current_branch:$dev_branch
-          git push origin $current_branch:$master_branch
+          git push origin $current_branch:$main_branch
 
           # Set upstream for dev and master separately
           git fetch
