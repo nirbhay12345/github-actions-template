@@ -6,19 +6,19 @@ on:
       - "feature/*" # Trigger on any branch starting with 'feature/'
 
 permissions:
-  actions: read
+  actions: write
   checks: write
-  contents: read
-  deployments: read
+  contents: write
+  deployments: write
   id-token: write
-  issues: read
-  discussions: read
-  packages: read
-  pages: read
+  issues: write
+  discussions: write
+  packages: write
+  pages: write
   pull-requests: write
-  repository-projects: read
-  security-events: read
-  statuses: read
+  repository-projects: write
+  security-events: write
+  statuses: write
 
 jobs:
   create-branches:
