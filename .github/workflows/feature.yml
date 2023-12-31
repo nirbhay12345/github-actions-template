@@ -27,6 +27,7 @@ jobs:
           current_branch=$(git branch --show-current)  # Get the current branch name
 
           # creating remote branches
+          git pull
           git push origin $current_branch:$dev_branch
           git push origin $current_branch:$main_branch
 
