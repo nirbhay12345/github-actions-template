@@ -58,7 +58,7 @@ jobs:
           echo "{
                   "title": "Auto-generated PR for $dev_branch",
                   "body": "Auto-generated main pull request from workflow",
-                  "head": "$owner:$dev_branch",
+                  "head": "$dev_branch",
                   "base": "dev"
                 }"
 
@@ -70,7 +70,7 @@ jobs:
             -d '{
                   "title": "Auto-generated PR for $dev_branch",
                   "body": "Auto-generated main pull request from workflow",
-                  "head": "$owner:$dev_branch",
+                  "head": "$dev_branch",
                   "base": "dev"
                 }' \
             https://api.github.com/repos/$owner/$repo/pulls
