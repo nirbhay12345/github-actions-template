@@ -71,20 +71,21 @@ jobs:
               "title": "Auto-generated PR for $dev_branch",
               "head": "github-actions:$dev_branch",
               "base": "dev",
-              "body": "Auto-generated dev pull request from workflow"
+              "body": "Auto-generated dev pull request from workflow",
+              "draft": "true"
             }')
 
           echo "$response"
 
-          response=$(curl -X POST \
-            -H "Authorization: Bearer $token" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/$owner/$repo/pulls \
-            -d '{
-              "title": "Auto-generated PR for $main_branch",
-              "head": "github-actions:$main_branch",
-              "base": "main",
-              "body": "Auto-generated main pull request from workflow"
-            }')
+          # response=$(curl -X POST \
+          #   -H "Authorization: Bearer $token" \
+          #   -H "Accept: application/vnd.github.v3+json" \
+          #   https://api.github.com/repos/$owner/$repo/pulls \
+          #   -d '{
+          #     "title": "Auto-generated PR for $main_branch",
+          #     "head": "github-actions:$main_branch",
+          #     "base": "main",
+          #     "body": "Auto-generated main pull request from workflow"
+          #   }')
 
-          echo "$response"
+          # echo "$response"
