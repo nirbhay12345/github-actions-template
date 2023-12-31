@@ -63,15 +63,15 @@ jobs:
                 }"
 
           # Create a pull request using GitHub API
-          response=$(curl -X POST \
+          response=$(curl -X POST 'https://api.github.com/repos/$owner/$repo/pulls' \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer $token" \
+            -H 'Content-Type: application/json' \
             -d '{
                   "title": "Auto-generated PR for $dev_branch",
                   "head": "$dev_branch",
                   "base": "dev"
-                }' \
-            https://api.github.com/repos/$owner/$repo/pulls
+                }' 
           )
 
           echo "$response"
