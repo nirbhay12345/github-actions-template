@@ -73,7 +73,7 @@ jobs:
                   "head": "$dev_branch",
                   "base": "dev"
                 }' \
-            https://api.github.com/repos/$owner/$repo/pulls
+            https://api.github.com/repos/$owner/$repo/pull/new/$dev_branch
           )
 
           echo "$response"
