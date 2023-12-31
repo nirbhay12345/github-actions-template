@@ -1,0 +1,59 @@
+name: Create Dev and Master Feature Branches
+
+on:
+  push:
+    branches:
+      - "feature/*" # Trigger on any branch starting with 'feature/'
+
+jobs:
+  create-branches:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get branch name
+        run: echo "The branch name is ${{ github.ref }}"
+        id: branch_name
+
+      - name: Check if branches exist
+        run: |
+          branch_name=$(echo "${{ steps.branch_name.outputs.stdout }}" | cut -d '/' -f 2)
+          dev_branch="${branch_name}-dev"
+          master_branch="${branch_name}-master"
+
+          # Check if branches exist
+          if git ls-remote --exit-code --heads origin $dev_branch >/dev/null &&
+             git ls-remote --exit-code --heads origin $master_branch >/dev/null; then
+            echo "Branches already exist on GitHub. Skipping creation."
+            exit 0 # Exit successfully to stop the workflow
+          fi
+
+      - name: Create branches on GitHub
+        run: |
+          git push origin HEAD:refs/heads/$dev_branch
+          git push origin HEAD:refs/heads/$master_branch
+
+  push-to-dev-master:
+    runs-on: ubuntu-latest
+    needs: create-branches
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get branch name
+        run: echo "The branch name is ${{ github.ref }}"
+        id: branch_name
+
+      - name: Extract branch name
+        run: |
+          branch_name=$(echo "${{ steps.branch_name.outputs.stdout }}" | cut -d '/' -f 2)
+          dev_branch="${branch_name}-dev"
+          master_branch="${branch_name}-master"
+          current_branch=$(git branch --show-current)  # Get the current branch name
+
+          echo "Pushing changes from '$current_branch' to '$dev_branch' and '$master_branch'"
+          git push origin $current_branch:$dev_branch
+          git push origin $current_branch:$master_branch
