@@ -5,7 +5,20 @@ on:
     branches:
       - "feature/*" # Trigger on any branch starting with 'feature/'
 
-permissions: write-all
+permissions:
+  actions: read
+  checks: write
+  contents: read
+  deployments: read
+  id-token: write
+  issues: read
+  discussions: read
+  packages: read
+  pages: read
+  pull-requests: write
+  repository-projects: read
+  security-events: read
+  statuses: read
 
 jobs:
   create-branches:
