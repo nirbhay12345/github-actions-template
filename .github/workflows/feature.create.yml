@@ -57,7 +57,7 @@ jobs:
 
           echo "{
               "title": "Auto-generated PR for $dev_branch",
-              "head": "octocat:$dev_branch",
+              "head": "github-actions:$dev_branch",
               "base": "dev",
               "body": "Auto-generated dev pull request from workflow"
             }"
@@ -69,7 +69,7 @@ jobs:
             https://api.github.com/repos/$owner/$repo/pulls \
             -d '{
               "title": "Auto-generated PR for $dev_branch",
-              "head": "octocat:$dev_branch",
+              "head": "github-actions:$dev_branch",
               "base": "dev",
               "body": "Auto-generated dev pull request from workflow"
             }')
@@ -82,7 +82,7 @@ jobs:
             https://api.github.com/repos/$owner/$repo/pulls \
             -d '{
               "title": "Auto-generated PR for $main_branch",
-              "head": "octocat:$main_branch",
+              "head": "github-actions:$main_branch",
               "base": "main",
               "body": "Auto-generated main pull request from workflow"
             }')
