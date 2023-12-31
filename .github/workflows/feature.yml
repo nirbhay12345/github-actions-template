@@ -33,8 +33,8 @@ jobs:
 
       - name: Create branches on GitHub
         run: |
-          git push origin $current_branch:refs/heads/$dev_branch
-          git push origin $current_branch:refs/heads/$master_branch
+          git push origin $current_branch:$dev_branch
+          git push origin $current_branch:$master_branch
 
   push-dev-master:
     runs-on: ubuntu-latest
