@@ -19,21 +19,12 @@ jobs:
         run: echo "${{ github.ref }}"
         id: branch_name
 
-      - name: Check if branches exist
+      - name: Create branches on GitHub
         run: |
-          branch_name=$(echo "${{ steps.branch_name.outputs.stdout }}" | cut -d '/' -f 2)
+          branch_name=$(echo "${{ github.ref }}" | cut -d '/' -f 4)
           dev_branch="${branch_name}-dev"
           master_branch="${branch_name}-master"
           current_branch=$(git branch --show-current)  # Get the current branch name
 
-          # Check if branches exist
-          if git ls-remote --exit-code --heads origin $dev_branch >/dev/null &&
-             git ls-remote --exit-code --heads origin $master_branch >/dev/null; then
-            echo "Branches already exist on GitHub. Skipping creation."
-            exit 0 # Exit successfully to stop the workflow
-          fi
-
-      - name: Create branches on GitHub
-        run: |
           git push origin $current_branch:$dev_branch
           git push origin $current_branch:$master_branch
