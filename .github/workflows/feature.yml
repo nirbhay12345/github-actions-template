@@ -5,7 +5,7 @@ on:
     branches:
       - "feature/*" # Trigger on any branch starting with 'feature/'
 
-permissions: read-all, write-all
+permissions: write-all
 
 jobs:
   create-branches:
