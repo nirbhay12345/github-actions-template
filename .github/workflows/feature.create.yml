@@ -55,7 +55,12 @@ jobs:
           owner=${{ github.repository_owner }}
           repo=${{ github.event.repository.name }}
 
-          echo "$dev_branch"
+          echo "{
+              "title": "Auto-generated PR for $dev_branch",
+              "head": "$dev_branch",
+              "base": "dev",
+              "body": "Auto-generated dev pull request from workflow"
+            }"
 
           # Create a pull request using GitHub API
           response=$(curl -X POST \
