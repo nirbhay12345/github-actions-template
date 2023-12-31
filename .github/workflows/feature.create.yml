@@ -57,7 +57,7 @@ jobs:
 
           echo "{
               "title": "Auto-generated PR for $dev_branch",
-              "head": "$owner:$dev_branch",
+              "head": "'"$owner:$dev_branch"'",
               "base": "dev",
               "body": "Auto-generated dev pull request from workflow"
             }"
