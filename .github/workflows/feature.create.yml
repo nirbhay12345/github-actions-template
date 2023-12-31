@@ -1,4 +1,4 @@
-name: Feature Branches
+name: Feature Branches & PRs
 
 on:
   create:
@@ -54,6 +54,8 @@ jobs:
           token=${{ secrets.GITHUB_TOKEN }}
           owner=${{ github.repository_owner }}
           repo=${{ github.event.repository.name }}
+
+          echo "$dev_branch"
 
           # Create a pull request using GitHub API
           response=$(curl -X POST \
