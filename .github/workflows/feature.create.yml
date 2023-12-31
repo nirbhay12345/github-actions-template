@@ -69,9 +69,10 @@ jobs:
           repo=${{ github.event.repository.name }}
 
           # Create a pull request using GitHub API
-          response=$(curl --user "$owner":"$token" --request POST \
+          response=$(curl --request POST \
             --url 'https://api.github.com/repos/$owner/$repo/pulls' \
             --header 'Accept: application/vnd.github+json' \
+            --header 'Authorization: Bearer $token' \
             --header "X-GitHub-Api-Version: 2022-11-28" \
             -d '{
                   "title": "Auto-generated PR for $dev_branch",
