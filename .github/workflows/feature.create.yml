@@ -35,3 +35,48 @@ jobs:
           git fetch
           git branch --set-upstream-to=origin/$dev_branch $current_branch
           git branch --set-upstream-to=origin/$main_branch $current_branch
+
+  create-pull-request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create pull request
+        run: |
+          branch_name=$(echo "${{ github.ref }}" | cut -d '/' -f 4)
+          dev_branch="${branch_name}-dev"
+          main_branch="${branch_name}-main"
+          current_branch=$(git branch --show-current)  # Get the current branch name
+
+          token=${{ secrets.GITHUB_TOKEN }}
+          owner=${{ github.repository_owner }}
+          repo=${{ github.event.repository.name }}
+
+          # Create a pull request using GitHub API
+          response=$(curl -X POST \
+            -H "Authorization: Bearer $token" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/$owner/$repo/pulls \
+            -d '{
+              "title": "Auto-generated PR for '"$dev_branch"'",
+              "head": "'"$dev_branch"'",
+              "base": "dev",
+              "body": "Auto-generated pull request from workflow"
+            }')
+
+          echo "$response"
+
+          response=$(curl -X POST \
+            -H "Authorization: Bearer $token" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/$owner/$repo/pulls \
+            -d '{
+              "title": "Auto-generated PR for '"$main_branch"'",
+              "head": "'"$main_branch"'",
+              "base": "main",
+              "body": "Auto-generated pull request from workflow"
+            }')
+
+          echo "$response"
