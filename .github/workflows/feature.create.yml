@@ -71,7 +71,8 @@ jobs:
                   "title": "Auto-generated PR for $dev_branch",
                   "body": "Auto-generated main pull request from workflow",
                   "head": "$dev_branch",
-                  "base": "dev"
+                  "base": "dev",
+                  "draft": "True"
                 }' \
             https://api.github.com/repos/$owner/$repo/pulls
           )
