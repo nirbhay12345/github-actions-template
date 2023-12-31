@@ -63,7 +63,7 @@ jobs:
               "title": "Auto-generated PR for '"$dev_branch"'",
               "head": "'"$dev_branch"'",
               "base": "dev",
-              "body": "Auto-generated pull request from workflow"
+              "body": "Auto-generated dev pull request from workflow"
             }')
 
           echo "$response"
@@ -76,7 +76,7 @@ jobs:
               "title": "Auto-generated PR for '"$main_branch"'",
               "head": "'"$main_branch"'",
               "base": "main",
-              "body": "Auto-generated pull request from workflow"
+              "body": "Auto-generated main pull request from workflow"
             }')
 
           echo "$response"
