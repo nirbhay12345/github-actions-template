@@ -64,7 +64,7 @@ jobs:
           main_branch="${branch_name}-main"
           current_branch=$(git branch --show-current)  # Get the current branch name
 
-          token=${{ secrets.GITHUB_TOKEN }}
+          token=${{ secrets.pat }}
           owner=${{ github.repository_owner }}
           repo=${{ github.event.repository.name }}
 
