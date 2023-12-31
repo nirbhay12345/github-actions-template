@@ -5,6 +5,8 @@ on:
     branches:
       - "feature/*" # Trigger on any branch starting with 'feature/'
 
+permissions: read-all, write-all
+
 jobs:
   create-branches:
     runs-on: ubuntu-latest
