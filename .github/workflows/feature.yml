@@ -1,4 +1,4 @@
-name: Create Dev and Master Feature Branches
+name: Feature Branches
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
         run: echo "${{ github.ref }}"
         id: branch_name
 
-      - name: Create branches on GitHub
+      - name: Create branches and push on GitHub
         run: |
           branch_name=$(echo "${{ github.ref }}" | cut -d '/' -f 4)
           dev_branch="${branch_name}-dev"
