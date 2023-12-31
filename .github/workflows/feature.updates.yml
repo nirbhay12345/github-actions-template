@@ -11,22 +11,22 @@ jobs:
   push-changes:
     runs-on: ubuntu-latest
 
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Get branch name
-      run: echo "${{ github.ref }}"
-      id: branch_name
+      - name: Get branch name
+        run: echo "${{ github.ref }}"
+        id: branch_name
 
-    - name: Push Changes
-      run: |
-        branch_name=$(echo "${{ github.ref }}" | cut -d '/' -f 4)
-        dev_branch="${branch_name}-dev"
-        main_branch="${branch_name}-main"
-        current_branch=$(git branch --show-current)  # Get the current branch name
+      - name: Push Changes
+        run: |
+          branch_name=$(echo "${{ github.ref }}" | cut -d '/' -f 4)
+          dev_branch="${branch_name}-dev"
+          main_branch="${branch_name}-main"
+          current_branch=$(git branch --show-current)  # Get the current branch name
 
-        # creating remote branches
-        git pull
-        git push origin $current_branch:$dev_branch
-        git push origin $current_branch:$main_branch
+          # creating remote branches
+          git pull
+          git push origin $current_branch:$dev_branch
+          git push origin $current_branch:$main_branch
