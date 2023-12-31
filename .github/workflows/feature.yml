@@ -28,3 +28,14 @@ jobs:
 
           git pull && git push origin $current_branch:$dev_branch
           git pull && git push origin $current_branch:$main_branch
+
+      - name: Set Upstream
+        run: |
+          branch_name=$(echo "${{ github.ref }}" | cut -d '/' -f 4)
+          dev_branch="${branch_name}-dev"
+          main_branch="${branch_name}-main"
+          current_branch=$(git branch --show-current)  # Get the current branch name
+          # Set upstream for dev and master separately
+          git fetch
+          git branch --set-upstream-to=origin/$dev_branch $current_branch
+          git branch --set-upstream-to=origin/$main_branch $current_branch # Set master explicitly
