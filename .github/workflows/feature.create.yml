@@ -36,20 +36,20 @@ jobs:
           git branch --set-upstream-to=origin/$dev_branch $current_branch
           git branch --set-upstream-to=origin/$main_branch $current_branch
 
-  create-pull-request:
-    runs-on: ubuntu-latest
-    needs: [create-branches]
+      # create-pull-request:
+      #   runs-on: ubuntu-latest
+      #   needs: [create-branches]
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      #   steps:
+      #     - name: Checkout code
+      #       uses: actions/checkout@v2
 
       - name: Create pull request
         run: |
-          branch_name=$(echo "${{ github.ref }}" | cut -d '/' -f 4)
-          dev_branch="${branch_name}-dev"
-          main_branch="${branch_name}-main"
-          current_branch=$(git branch --show-current)  # Get the current branch name
+          # branch_name=$(echo "${{ github.ref }}" | cut -d '/' -f 4)
+          # dev_branch="${branch_name}-dev"
+          # main_branch="${branch_name}-main"
+          # current_branch=$(git branch --show-current)  # Get the current branch name
 
           token=${{ secrets.GITHUB_TOKEN }}
           owner=${{ github.repository_owner }}
