@@ -19,9 +19,9 @@ To use this template:
 
 This template includes the following example workflows:
 
-- **CI/CD Pipeline:** Demonstrates a basic continuous integration and deployment setup using GitHub Actions. It includes steps for building, testing, and deploying the project.
+- [**Create Feature Branch**](https://github.com/nirbhay12345/github-actions-template/blob/dev/docs/feature.create.md)
 
-- **Scheduled Tasks:** Illustrates how to set up actions that run on a predefined schedule. This example performs tasks like generating reports, cleanup operations, etc., on a scheduled basis.
+- [**Push Changes**](https://github.com/nirbhay12345/github-actions-template/blob/dev/docs/feature.updates.md)
 
 Feel free to explore and modify these workflows to suit your specific needs.
 
@@ -40,4 +40,3 @@ Your contributions are highly appreciated!
 ## Acknowledgments
 
 - [GitHub Actions Documentation](https://docs.github.com/en/actions) - Official documentation for GitHub Actions.
-
