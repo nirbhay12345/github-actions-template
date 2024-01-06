@@ -1,11 +1,24 @@
-name: Feature Branches
+name: Feature Branches & PRs
 
 on:
   create:
     branches:
       - "feature/*" # Trigger on any branch starting with 'feature/'
 
-permissions: write-all
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  id-token: write
+  issues: write
+  discussions: write
+  packages: write
+  pages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
 
 jobs:
   create-branches:
@@ -35,3 +48,37 @@ jobs:
           git fetch
           git branch --set-upstream-to=origin/$dev_branch $current_branch
           git branch --set-upstream-to=origin/$main_branch $current_branch
+
+  create-pull-request:
+    runs-on: ubuntu-latest
+    needs: [create-branches]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create pull request
+        run: |
+          branch_name=$(echo "${{ github.ref }}" | cut -d '/' -f 4)
+          dev_branch="${branch_name}-dev"
+          main_branch="${branch_name}-main"
+          current_branch=$(git branch --show-current)  # Get the current branch name
+
+          token=${{ secrets.PAT_SECRET }}
+          owner=${{ github.repository_owner }}
+          repo=${{ github.event.repository.name }}
+
+          # Create a pull request using GitHub API
+          response=$(curl --request POST \
+            --url 'https://api.github.com/repos/$owner/$repo/pulls' \
+            --header 'Accept: application/vnd.github+json' \
+            --header 'Authorization: Bearer $token' \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            -d '{
+                  "title": "Auto-generated PR for $dev_branch",
+                  "head": "$owner:$dev_branch",
+                  "base": "dev"
+                }' 
+          )
+
+          echo "$response"
