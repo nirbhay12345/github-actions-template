@@ -40,7 +40,3 @@ Your contributions are highly appreciated!
 ## Acknowledgments
 
 - [GitHub Actions Documentation](https://docs.github.com/en/actions) - Official documentation for GitHub Actions.
-
----
-
-Feel free to add or modify sections as necessary, and don't forget to include any specific instructions or details relevant to your project.
