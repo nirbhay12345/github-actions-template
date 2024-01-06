@@ -1,4 +1,4 @@
-name: Feature Branches
+name: Create Feature Branches
 
 on:
   create:
