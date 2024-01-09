@@ -14,24 +14,6 @@ on:
       - "feature/*" # Trigger on any branch starting with 'feature/'
 ```
 
-## Permissions
-
-This workflow requires specific permissions to perform various actions within the repository. It is configured with the following permissions:
-
-- Actions
-- Checks
-- Contents
-- Deployments
-- ID token
-- Issues
-- Discussions
-- Packages
-- Pages
-- Pull requests
-- Repository projects
-- Security events
-- Statuses
-
 ## Workflow Steps
 
 ### Step 1: Checkout Code
