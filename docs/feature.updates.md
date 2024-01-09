@@ -14,12 +14,6 @@ on:
       - "feature/*" # Trigger on any branch starting with 'feature/'
 ```
 
-## Permissions
-
-The workflow requires write permissions to perform branch creation and force pushing changes to the repository.
-
-- Permissions: Write-All
-
 ## Workflow Steps
 
 ### Step 1: Checkout Code
